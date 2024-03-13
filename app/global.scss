@@ -1,7 +1,12 @@
+// ===== global variables =====
+:root{
+    --main-color: #333333;
+    --bg-color-lt: #ffffff;
+}
 html, body{
     padding: 0;
     margin: 0;
-    background-color: #fff;
+    background-color: var(--bg-color-lt);
 }
 *{
     box-sizing: border-box;
