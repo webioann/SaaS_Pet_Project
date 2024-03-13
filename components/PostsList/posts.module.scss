@@ -1,0 +1,18 @@
+.list{
+    display: grid;
+    gap: 1rem;
+    .post{
+        list-style: none;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        width: 500px;
+        .title{
+            max-width: 300px;
+        }
+        article{
+            letter-spacing: normal;
+        }
+    }
+    
+}

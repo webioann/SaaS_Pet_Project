@@ -12,11 +12,11 @@ export default async function PostsList({ data }: Props) {
 
     return (
         <main>
-            <ul>
+            <ul className={style.list}>
                 {posts.map(post => (
-                    <li key={post.id}>
-                        <h3>{post.title}</h3>
-                        <p>{post.body}</p>
+                    <li key={post.id} className={style.post}>
+                        <h3 className={style.title}>{post.title}</h3>
+                        <article>{post.body}</article>
                     </li>
                 ))}
             </ul>
