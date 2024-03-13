@@ -1,9 +1,22 @@
 import React from 'react'
+import Link from 'next/link'
+import { fetchAllUsers } from '../../lib/fetchAllUsers'
+import type { IUser } from "../../types/user.types"
 
-function User() {
+export default async function User() {
+
+    const data: Promise<IUser[]> = fetchAllUsers()
+    const usersList = await data
+
     return (
-        <h1>USER555555</h1>
+        <section>
+            <ul>
+                {usersList.map(user => (
+                    <Link href={`/users/${user.id}`}>
+                        <li key={user.id}>{user.name}</li>
+                    </Link>
+                ))}
+            </ul>
+        </section>
     )
-}
-
-export default User
+};
