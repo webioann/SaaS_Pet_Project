@@ -13,7 +13,7 @@ export default async function User() {
         <section>
             <ul>
                 {usersList.map(user => (
-                    <Link href={`/users/${user.id}`} className={styles.user_link}>
+                    <Link href={`/users/${user.id}`} className={styles.user_link} key={user.id}>
                         <li key={user.id}>{user.name}</li>
                     </Link>
                 ))}
