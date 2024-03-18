@@ -28,3 +28,4 @@ function About({ params }: { params: { lang: langType }}) {
 }
 
 export default About;
+
