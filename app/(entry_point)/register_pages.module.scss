@@ -5,4 +5,8 @@
     color: var(--color-lt);
     z-index: 2;
     padding: 1rem;
+    .auth_header{
+        font-weight: 600;
+        letter-spacing: 3px;
+    }
 }

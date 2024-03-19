@@ -1,10 +1,10 @@
 import React from 'react'
-import { Roboto } from 'next/font/google'
+import { Lato } from 'next/font/google'
 import type { Metadata } from 'next'
 import './global.scss'
 
 // If loading a variable font, you don't need to specify the font weight
-const roboto = Roboto({ weight: '300', display: 'swap', subsets: ['latin'] })
+const lato = Lato({ weight: ['300', '400'], display: 'swap', subsets: ['latin'] })
 export const metadata: Metadata = {
     title: 'Netflix',
     description: 'description for metadata',
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en" className={roboto.className}>
+        <html lang="en" className={lato.className}>
             <body>
                 {children}
             </body>
