@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
-// import { HiOutlineMail } from 'react-icons/hi'
-// import { GoEye,GoEyeClosed } from 'react-icons/go'
+import { HiOutlineMail } from 'react-icons/hi'
+import { GoEye,GoEyeClosed } from 'react-icons/go'
 import './register-form.scss'
 import button from '../../app/index.module.scss'
 
@@ -19,9 +19,9 @@ const RegistrationForm = () => {
     // const closePopup = () => setWarning(false)
 
 
-    // const showPassword = () => {
-    //     inputType === 'password' ? setInputType('text') : setInputType('password')
-    // }
+    const showPassword = () => {
+        inputType === 'password' ? setInputType('text') : setInputType('password')
+    }
     const loginWithEmail = () => {console.log('LOGIN BUTTON IS CLICKED')}
 
     return (
@@ -42,7 +42,7 @@ const RegistrationForm = () => {
                         }}
                         type='email' 
                         onChange={event => setEmail(event.target.value)}/>
-                    {/* <HiOutlineMail className='input-icon'/> */}
+                    <HiOutlineMail className='input-icon'/>
                 </div>
             </div>
             <div className='password-box'>
@@ -60,17 +60,15 @@ const RegistrationForm = () => {
                         }}
                         type={inputType} 
                         onChange={event => setPassword(event.target.value)}/>
-                    {/* {inputType === 'text' 
+                    {inputType === 'text' 
                         ? <GoEye className='input-icon' onClick={showPassword}/> 
                         : <GoEyeClosed className='input-icon' onClick={showPassword}/>
-                    } */}
+                    }
                 </div>
             </div>
             <button className={`${button.g_button} auth-button`} onClick={loginWithEmail}>
                 Login with email
             </button>
-            <h1 className={button.g_button}>HELLO</h1>
-
         </form>
     )
 }

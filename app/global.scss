@@ -1,9 +1,9 @@
+@import './@normalize.scss';
 // ===== global variables =====
 :root{
     --bg-color: #111111;
     --netflix-red: #E50914;
     --netflix-gray: rgba(255, 255, 255, 0.2);
-    --netflix-red: #E50914;
     --color-lt: #ffffff;
     --radius-sm: 4px;
     --radius-md: 6px;
@@ -13,7 +13,35 @@
 html, body{
     background-color: var(--bg-color);
     color: var(--color-lt);
+    width: 100%;
+    scroll-behavior: smooth;
+    height: 100%;
+    font-size: 14px;
+    line-height: 1.15;
+    font-weight: 400;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
 }
+@media (min-width: 580px) {
+    html,
+    body {
+        font-size: 15px;
+    }
+}
+@media (min-width: 768px) {
+    html,
+    body {
+        font-size: 16px;
+    }
+}
+@media (min-width: 1200px) {
+    html,
+    body {
+        font-size: 17px;
+    }
+}
+
 *{
     box-sizing: border-box;
     padding: 0;
@@ -66,27 +94,3 @@ $button-min-size: 90px;
 $button-big: 160px;
 $max-mobile: 320px;
 
-// === GLOBAL CLASSES ===
-// .g-link {
-//     color: $light;
-//     transition: transform 300ms linear;
-//     &:hover {
-//         font-weight: 700;
-//         transform: scale(1.1);
-//         cursor: pointer;
-//     }
-// }
-// .g_button {
-//     padding: 0.5rem 1rem;
-//     display: flex;
-//     max-width: 10rem;
-//     justify-content: center;
-//     gap: 0.5rem;
-//     align-items: center;
-//     border-radius: $br-main;
-//     color: $light;
-//     position: relative;
-//     &:hover {
-//         cursor: pointer;
-//     }
-// }

@@ -6,7 +6,7 @@ import AuthPageFooter from '../../components/AuthPageFooter/AuthPageFooter'
 function EntryPointLayout({ children }: {children: ReactNode}) {
     
     return (
-        <main className={styles.page_wrapper}>
+        <main className={styles.container}>
             <Image 
                 src={require('../../public/login_background.jpg')}
                 className={styles.bg_image} 
