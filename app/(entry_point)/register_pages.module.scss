@@ -1,6 +1,8 @@
 .register_page{
-    background-color: red;
+    background-color: var(--bg-color);
+    opacity: 0.8;
     max-width: 450px;
     color: var(--color-lt);
     z-index: 2;
+    padding: 1rem;
 }

@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
 import Image from 'next/image'
 import styles from './entry_point.module.scss'
+import AuthPageFooter from '../../components/AuthFooter/AuthPageFooter'
 
 function EntryPointLayout({ children }: {children: ReactNode}) {
     
@@ -13,6 +14,7 @@ function EntryPointLayout({ children }: {children: ReactNode}) {
                 priority 
             />
             {children}
+            <AuthPageFooter/>
         </main>
     )
 }
