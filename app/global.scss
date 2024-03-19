@@ -5,6 +5,10 @@
     --netflix-gray: rgba(255, 255, 255, 0.2);
     --netflix-red: #E50914;
     --color-lt: #ffffff;
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --header-hight: 60px;
+
 }
 html, body{
     background-color: var(--bg-color);
@@ -49,9 +53,6 @@ $left-btn: 115px;
 $top-btn: 63px;
 // =============
 
-$br-main: 4px;
-$br-medium: 6px;
-$header-hight: 60px;
 
 $xs: 425px;
 $sm: 640px;
@@ -66,26 +67,26 @@ $button-big: 160px;
 $max-mobile: 320px;
 
 // === GLOBAL CLASSES ===
-.g-link {
-    color: $light;
-    transition: transform 300ms linear;
-    &:hover {
-        font-weight: 700;
-        transform: scale(1.1);
-        cursor: pointer;
-    }
-}
-.g-button {
-    padding: 0.5rem 1rem;
-    display: flex;
-    max-width: 10rem;
-    justify-content: center;
-    gap: 0.5rem;
-    align-items: center;
-    border-radius: $br-main;
-    color: $light;
-    position: relative;
-    &:hover {
-        cursor: pointer;
-    }
-}
+// .g-link {
+//     color: $light;
+//     transition: transform 300ms linear;
+//     &:hover {
+//         font-weight: 700;
+//         transform: scale(1.1);
+//         cursor: pointer;
+//     }
+// }
+// .g_button {
+//     padding: 0.5rem 1rem;
+//     display: flex;
+//     max-width: 10rem;
+//     justify-content: center;
+//     gap: 0.5rem;
+//     align-items: center;
+//     border-radius: $br-main;
+//     color: $light;
+//     position: relative;
+//     &:hover {
+//         cursor: pointer;
+//     }
+// }

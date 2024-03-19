@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import Image from 'next/image'
 import styles from './entry_point.module.scss'
-import AuthPageFooter from '../../components/AuthFooter/AuthPageFooter'
+import AuthPageFooter from '../../components/AuthPageFooter/AuthPageFooter'
 
 function EntryPointLayout({ children }: {children: ReactNode}) {
     
