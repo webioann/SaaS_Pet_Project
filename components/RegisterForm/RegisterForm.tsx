@@ -5,7 +5,9 @@ import { GoEye,GoEyeClosed } from 'react-icons/go'
 import './register-form.scss'
 import button from '../../app/index.module.scss'
 
-const RegistrationForm = () => {
+type FormProps = { type: 'signup' | 'login'}
+
+const RegistrationForm:React.FC<FormProps> = ({type}) => {
     // === one form for login and signup users ===
     const [inputType,setInputType] = useState<string>('password')
     const [emailFocus, setEmailFocus] = useState<boolean>(false)
@@ -67,7 +69,7 @@ const RegistrationForm = () => {
                 </div>
             </div>
             <button className={`${button.g_button} auth-button`} onClick={loginWithEmail}>
-                Login with email
+                { type === 'login' ? 'Login with email' : 'Signup with email'}
             </button>
         </form>
     )
