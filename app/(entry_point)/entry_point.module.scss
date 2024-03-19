@@ -1,0 +1,19 @@
+
+.page_wrapper{
+    width: 100%;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-color);
+    position: relative;
+    .bg_image{
+        position: absolute;
+        width: 100%;
+        object-fit: cover;
+        backdrop-filter: brightness(50%);
+    }
+}

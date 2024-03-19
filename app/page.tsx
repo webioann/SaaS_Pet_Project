@@ -1,10 +1,9 @@
 import React from 'react'
 
-export default function Home() {
+function HomePage() {
     return (
-        <main>
-            <h1>HELLO WORLD AND GIT</h1>
-        </main>
+        <h1>HOME PAGE</h1>
     )
-};
+}
 
+export default HomePage
