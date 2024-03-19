@@ -12,6 +12,7 @@ function EntryPointLayout({ children }: {children: ReactNode}) {
                 className={styles.bg_image} 
                 alt='page bg'
                 priority 
+                fill
             />
             {children}
             <AuthPageFooter/>
