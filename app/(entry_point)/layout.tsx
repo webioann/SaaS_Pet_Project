@@ -2,11 +2,14 @@ import React, { ReactNode } from 'react'
 import Image from 'next/image'
 import styles from './entry_point.module.scss'
 import AuthPageFooter from '../../components/AuthPageFooter/AuthPageFooter'
+import AuthContextProvider from '../../context/AuthContextProvider'
+import Navbar from '../../components/Navbar/Navbar'
 
 function EntryPointLayout({ children }: {children: ReactNode}) {
     
     return (
         <main className={styles.container}>
+            <Navbar/>
             <Image 
                 src={require('../../public/login_background.jpg')}
                 className={styles.bg_image} 
@@ -15,7 +18,10 @@ function EntryPointLayout({ children }: {children: ReactNode}) {
                 fill
             />
             {children}
-            <AuthPageFooter/>
+            <AuthContextProvider>
+                <AuthPageFooter/>
+
+            </AuthContextProvider>
         </main>
     )
 }

@@ -2,7 +2,6 @@ import React from 'react'
 import './auth-footer.scss'
 
 const AuthPageFooter = () => {
-    
     return (
         <footer className='auth-footer'>
             <div className="auth-footer-content">

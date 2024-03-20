@@ -1,24 +1,14 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const { Schema } = mongoose;
+mongoose.connect(process.env.MONGO_DB_URI as string);
+mongoose.Promise = global.Promise;
 
 const userSchema = new Schema({
-    // name: {
-    //     type: String,
-    //     unique: true,
-    //     required: true,
-    // },
-    email: {
-        type: String,
-        unique: true,
-        required: true,
-    },
-    password: {
-        type: String,
-        required: false,
-    },
+    name: String,
+    email: String,
+    password: String
     },
     { timestamps: true }
 );
-
-export default mongoose.models.User || mongoose.model("User", userSchema);
+const User = mongoose.models.User || mongoose.model("User", userSchema)
+export default User;

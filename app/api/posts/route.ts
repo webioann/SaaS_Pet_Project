@@ -1,14 +1,25 @@
-import TestData from "../../../models/TestDataSchema"
+import Posts from "../../../models/Posts"
 import connect from "../../../lib/connect"
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 
 export async function GET(req) {
         try{
-                await connect();
-                const data = await TestData.find()
-                return NextResponse.json({data})
-                // return new NextResponse(JSON.stringify(data), {status: 200})
-                // return new NextResponse(data, {status: 200})
+                const posts = await Posts.find()
+                return NextResponse.json({ posts }, {status: 200})
         }
-        catch(error) {return NextResponse.json('RESPONSE ERROR', {status: 500})}
+        catch(error) {
+                return NextResponse.json({message: 'GET Error --> ', error}, {status: 500})
+        }
+};
+
+export async function POST(request) {
+        try{
+                const body = await request.json()
+                const posts = body.postData
+                await Posts.create(posts)
+                return NextResponse.json({message: 'Posted ...'}, {status: 201})
+        }
+        catch(error) {
+                return NextResponse.json({message: 'POST Error --> ', error}, {status: 500})
+        }
 }
