@@ -23,5 +23,6 @@ const testDataSchema = new Schema({
     },
     { timestamps: true }
 );
+const TestData = mongoose.models.TestData || mongoose.model("TestData", testDataSchema)
+export default TestData;
 
-export default mongoose.models.TestDat || mongoose.model("TestDat", testDataSchema);

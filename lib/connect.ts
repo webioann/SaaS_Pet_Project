@@ -1,12 +1,9 @@
 import mongoose, { ConnectOptions } from "mongoose";
 
 const connect = async () => {
-    if (mongoose.connections[0].readyState) return;
+    // if (mongoose.connections[0].readyState) return;
     try {
-        await mongoose.connect(process.env.MONGO_DB_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        })
+        await mongoose.connect(process.env.MONGO_DB_URL!)
         console.log("Mongo Connection successfully established.");
     } 
     catch (error) {
