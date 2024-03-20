@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/404/404.js", "lib/connect.ts", "app/api/testdata/route.ts"  ],
+, "pages/404/404.js", "lib/connect.ts", "app/api/posts/route.ts"  ],
   "exclude": [
     "node_modules"
   ]
