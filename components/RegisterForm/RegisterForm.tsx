@@ -43,7 +43,7 @@ const RegistrationForm:React.FC<FormProps> = ({type}) => {
         })
         if(!response.ok) { throw new Error('Failed on RegisterForm') }
         if(response.ok) {
-            const res = await signIn("credentials", {
+            await signIn("credentials", {
                 name: formData.name,
                 email: formData.email,
                 password: formData.password,
