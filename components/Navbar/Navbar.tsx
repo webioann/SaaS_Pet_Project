@@ -22,8 +22,6 @@ function Navbar() {
         const res = await fetch('/api/posts', {
             method: 'POST',
             body: JSON.stringify({postData}),
-             //@ts-ignore
-            // "Content-Type": "application/json",
             headers: {
                 "Content-type": "application/json",
             },

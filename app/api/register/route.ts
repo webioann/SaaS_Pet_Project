@@ -19,15 +19,3 @@ export async function POST(req: Request) {
     }
 }
 
-// export async function POST(request: Request) {
-//     try{
-//         const { email, password } = await request.json()
-//         // need validate email and password here
-
-//         console.log('SUCCESS ---',{ email, password })
-//     }
-//     catch(error) {
-//         console.log(error)
-//     }
-// };
-
