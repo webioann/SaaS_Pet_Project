@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import './navbar.scss'
 
 function Navbar() {
-    const auth = useSession()
+    const { data: auth } = useSession()
     console.log(auth)
 
     const router = useRouter()
@@ -23,10 +23,10 @@ function Navbar() {
             method: 'POST',
             body: JSON.stringify({postData}),
              //@ts-ignore
-            "Content-Type": "application/json",
-            // headers: {
-            //     "Content-type": "application/json",
-            // },
+            // "Content-Type": "application/json",
+            headers: {
+                "Content-type": "application/json",
+            },
         })
         if(!res.ok) { throw new Error('Failed to send posts') }
         router.push('/api/posts')
@@ -34,7 +34,7 @@ function Navbar() {
 
     return (
         <div>Navbar
-            {auth.data ? <Link href='#' onClick={() => signOut({callbackUrl: '/'})}>SIGNOUT</Link> : null}
+            {auth ? <Link href='#' onClick={() => signOut({callbackUrl: '/'})}>SIGNOUT</Link> : null}
             <Link href={'/signup'}>Sign Up</Link>
             <Link href={'/login'}>Log in</Link>
             <Link href={'/api/auth/signin'}>SIGNIN</Link>
