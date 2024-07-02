@@ -8,7 +8,7 @@ import image from '../../public/tech_bg.jpg'
 
 async function EntryPointLayout ({ children }: {children: ReactNode}) {
     const session = await getServerSession(authOptions)
-    if (session) redirect("/");
+    // if (session) redirect("/");
     return (
         <main className={styles.container}>
             <Image 
