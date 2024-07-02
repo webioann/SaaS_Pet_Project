@@ -1,8 +1,8 @@
 {
-  "name": "nextnetflix",
+  "name": "SaaS_Pet_Project",
   "version": "1.0.0",
-  "description": "Next js fullstack petproject",
-  "repository": "https://github.com/webioann/nextnetflix.git",
+  "description": "SaaS_Pet_Project project",
+  "repository": "https://github.com/webioann/SaaS_Pet_Project.git",
   "main": "index.js",
   "author": "webioann",
   "license": "MIT",
