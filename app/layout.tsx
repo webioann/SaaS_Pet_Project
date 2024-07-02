@@ -7,7 +7,7 @@ import './global.scss'
 // If loading a variable font, you don't need to specify the font weight
 const lato = Lato({ weight: ['300', '400'], display: 'swap', subsets: ['latin'] })
 export const metadata: Metadata = {
-    title: 'Netflix',
+    title: 'Webioanns SaaS project',
     description: 'description for metadata',
 }
 
