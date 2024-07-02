@@ -64,7 +64,6 @@ const RegistrationForm:React.FC<FormProps> = ({type}) => {
         if(formData.email.length > 7 && formData.password.length > 5) {
             try {
                 const res = await signIn("credentials", {
-                    name: formData.name,
                     email: formData.email,
                     password: formData.password,
                     redirect: false,
