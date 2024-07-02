@@ -1,8 +1,6 @@
 import React, { ReactNode } from 'react'
 import Image from 'next/image'
 import styles from './entry_point.module.scss'
-import AuthPageFooter from '../../components/AuthPageFooter/AuthPageFooter'
-import Navbar from '../../components/Navbar/Navbar'
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "../api/auth/[...nextauth]/route";
@@ -13,7 +11,6 @@ async function EntryPointLayout ({ children }: {children: ReactNode}) {
     if (session) redirect("/");
     return (
         <main className={styles.container}>
-            <Navbar/>
             <Image 
                 src={image}
                 className={styles.bg_image} 
@@ -22,7 +19,6 @@ async function EntryPointLayout ({ children }: {children: ReactNode}) {
                 fill
             />
             {children}
-            <AuthPageFooter/>
         </main>
     )
 }
