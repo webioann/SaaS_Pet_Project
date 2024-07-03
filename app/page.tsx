@@ -1,10 +1,12 @@
+import Link from 'next/link'
 import React from 'react'
 
 function HomePage() {
     return (
-        <>
-            <h1>HOME PAGE</h1>
-        </>
+        <div>
+            <h1>Home</h1>
+            <Link href='/signup'>Create new account</Link>
+        </div>
     )
 }
 
