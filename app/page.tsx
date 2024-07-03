@@ -6,6 +6,7 @@ function HomePage() {
         <div>
             <h1>Home</h1>
             <Link href='/signup'>Create new account</Link>
+            <Link href='/login'>Login in your account</Link>
         </div>
     )
 }
