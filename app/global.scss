@@ -1,18 +1,28 @@
 @import './@normalize.scss';
 // ===== global variables =====
 :root{
-    --bg-color: #111111;
+    --bg-color: #ffffff;
+    --main-text: #000000;
     --netflix-red: #E50914;
     --netflix-gray: rgba(255, 255, 255, 0.2);
     --color-lt: #ffffff;
     --radius-sm: 4px;
     --radius-md: 6px;
     --header-hight: 60px;
-
+    
+    // sizes in CSS 
+    --xxs: 320px;
+    --xs: 425px;
+    --sm: 640px;
+    --md: 768px;
+    --lg: 1024px;
+    --xl: 1280px;
+    --xxl: 1536px;
+    
 }
 html, body{
     background-color: var(--bg-color);
-    color: var(--color-lt);
+    color: var(--main-text);
     width: 100%;
     scroll-behavior: smooth;
     height: 100%;

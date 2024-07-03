@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import SignOutButton from '../components/RegisterForm/AuthComponents/SignOutButton'
+import SignOutButton from '../components/AuthComponents/SignOutButton'
 
 function HomePage() {
     return (
