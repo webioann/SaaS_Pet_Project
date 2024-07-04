@@ -4,7 +4,8 @@ import Image from 'next/image'
 import styles from './entry_point.module.scss'
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "../../configs/authOptions.config";
+import { authOptions } from "../../configs/authOptions.config"
+import Container from '../../components/Container/Container';
 import image from '../../public/tech_bg.jpg'
 
 async function EntryPointLayout ({ children }: {children: ReactNode}) {
@@ -12,7 +13,7 @@ async function EntryPointLayout ({ children }: {children: ReactNode}) {
     console.log('SESSION', session)
     // if (session) redirect("/");
     return (
-        <main className={styles.container}>
+        <Container width={1200}>
             <Image 
                 src={image}
                 className={styles.bg_image} 
@@ -21,7 +22,8 @@ async function EntryPointLayout ({ children }: {children: ReactNode}) {
                 fill
             />
             {children}
-        </main>
+
+        </Container>
     )
 }
 
