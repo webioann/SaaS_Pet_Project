@@ -1,0 +1,52 @@
+.form{
+    color: var(--main-text);
+    .wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1rem;
+        min-width: var(--xxs);
+        max-width: var(--xs);
+        border: 1px solid red;
+        .form-title{
+            font-weight: 800;
+        }
+        .form-subtitle{
+            text-align: center;
+        }
+        .input-wrapper{
+            margin-top: 1rem;
+            label{
+                font-weight: 800;
+            }
+            input{
+                z-index: 3;
+                width: 100%;
+                margin-top: 5px;
+                display: flex;
+                align-items: center;
+                padding: 0.5rem;
+                border-radius: var(--radius-sm);
+                border: 1px solid var(--shadow);
+            }
+        }
+    }
+    .submit-button{
+        margin-top: 3rem;
+        padding: 0.5rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--shadow);
+        font-weight: 800;
+    }
+    .redirect{
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+        .question{
+            padding-right: 0.5rem;
+        }
+        .old-link{
+            text-decoration: underline;
+        }
+    }
+}
