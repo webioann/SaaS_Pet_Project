@@ -1,11 +1,44 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { signIn } from "next-auth/react";
 import { HiOutlineMail } from 'react-icons/hi'
+import { LoginFormDataType } from '../../types/auth.types';
 import Link from 'next/link'
 import './form.scss'
 
 function LogInForm() {
+    const router = useRouter()
+
+    const [formData,setFormData] = useState<LoginFormDataType>({
+        email: '',
+        password: ''
+    })
+    const [error,setError] = useState<string | null>(null)
+
+
+    const loginForAuthedUser = async (event) => {
+        event.preventDefault();
+        if(formData.email.length > 7 && formData.password.length > 5) {
+            try {
+                const res = await signIn("credentials", {
+                    email: formData.email,
+                    password: formData.password,
+                    redirect: false,
+                });
+                if (!res) {
+                    setError("Invalid Credentials");
+                    return;
+                }
+                router.push('/')
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        else return
+    }
     return (
-        <form 
+        <form onSubmit={(event) => loginForAuthedUser(event)}
             className='form'
             action={() => console.log('Log in action')}
             >
@@ -15,21 +48,28 @@ function LogInForm() {
                 {/* email */}
                 <div className='input-wrapper'>
                     <label>Email</label>
-                    <input name='email' placeholder='John Doe'/>
+                    <input 
+                        name='email' 
+                        type='text'
+                        placeholder='John Doe'/>
                 </div>
                 {/* password */}
                 <div className='input-wrapper'>
                     <label>Password</label>
-                    <input name='password' placeholder='john@examole.com'/>
+                    <input 
+                        name='password'
+                        type='password' 
+                        placeholder='john@examole.com'/>
                 </div>
-                <button className='submit-button'>Login</button>
+                {/* submit button */}
+                <button type='submit' className='submit-button'>Login</button>
+                {/* redirect link */}
                 <div className='redirect'>
                     <p className='question'>New in platform?</p>
                     <Link href="/signup" className='old-link'>
                         Signup
                     </Link> 
                 </div>
-
             </div>
         </form>
     )
