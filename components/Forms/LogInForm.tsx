@@ -21,21 +21,26 @@ function LogInForm() {
     const loginForAuthedUser: FormEventHandler<HTMLFormElement> = async (event) => {
         event.preventDefault()
         const formData = new FormData(event.currentTarget)
-        const email = formData.get('email')
-        const password = formData.get('password')
-        if(email && password) {
+        const email = formData.get('email') as string
+        const password = formData.get('password') as string
+        if(email.length > 7 && password.length > 5) {
             try {
-                const res = await signIn("credentials", {
-                    email,
-                    password,
-                    redirect: false,
-                    callbackUrl: '/'
-                });
-                if (!res) {
-                    setError("Invalid Credentials");
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password }),
+                })
+                // const res = await signIn("credentials", {
+                //     email,
+                //     password,
+                //     redirect: false,
+                //     callbackUrl: '/'
+                // });
+                if (!response)  {
+                    setError("Invalid Credentials")
                     return;
                 }
-                // router.push('/')
+                router.push('/')
             } catch (error) {
                 console.log(error); 
             }
@@ -43,7 +48,7 @@ function LogInForm() {
         else return
     }
     return (
-        <form onSubmit={(event) => loginForAuthedUser(event)} className='form'>
+        <form onSubmit={loginForAuthedUser} className='form'>
             <div className='wrapper'>
                 <h1 className='form-title'>Login account</h1>
                 <p className='form-subtitle'>use your password and email</p>

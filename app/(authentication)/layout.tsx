@@ -7,7 +7,7 @@ import Container from '../../components/Container/Container';
 
 async function EntryPointLayout ({ children }: {children: ReactNode}) {
     const session = await getServerSession(authConfig)
-    if (session) redirect("/");
+    // if (session) redirect("/");
 
     return (
         <Container width={1200}>

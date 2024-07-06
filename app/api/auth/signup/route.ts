@@ -1,5 +1,5 @@
-import User from '../../../models/UserSchema'
-import connect from "../../../lib/connect";
+import User from '../../../../models/UserSchema'
+import connect from "../../../../lib/connect";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs"
 

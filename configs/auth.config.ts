@@ -6,6 +6,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import User from '../models/UserSchema'
 import connect from "../lib/connect";
+import { redirect } from "next/navigation";
 
 export const authConfig: NextAuthOptions = {
     providers: [
@@ -20,31 +21,30 @@ export const authConfig: NextAuthOptions = {
                 password: {label: 'password', type: 'password', required: true},
             },
             async authorize(credentials) {
+                // get email and password from User form
                 const { email, password } = credentials as {
                     email: string;
                     password: string;
                 }
-                try {
-                    if(!email || !password) return null
-                    else {
-                        await connect();
-                        const user = await User.findOne({ email });
-                        if (!user) { return null }
-                        const passwordsMatch = await bcrypt.compare(password, user.password);
-                        if (!passwordsMatch) { return null }
-                        return user;
-                    }
-                } catch (error) {
-                    console.log("Error: ", error);
+                // check if User exists on MongoDB
+                await connect();
+                const user = await User.findOne({ email })
+                const passwordsMatch = await bcrypt.compare(password, user.password)
+                if(user && passwordsMatch) {
+                    return user
                 }
-            },        
+                if(user && !passwordsMatch) {
+                    redirect('/signup')
+                }
+                if (!user) { return null }
+            }       
         })
     ],
     session: {
         strategy: "jwt",
     },
     secret: process.env.NEXTAUTH_SECRET as string,
-    // pages: { 
-    //     signIn: '/signup',
-    // }
+    pages: { 
+        signIn: '/api/auth/signup',
+    }
 }
