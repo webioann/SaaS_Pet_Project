@@ -2,7 +2,7 @@
 import React, { ReactNode } from 'react'
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authConfig } from "../../configs/auth.config"
+import { authConfig } from "../api/auth/[...nextauth]/auth.config"
 import Container from '../../components/Container/Container';
 
 async function EntryPointLayout ({ children }: {children: ReactNode}) {

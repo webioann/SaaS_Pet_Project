@@ -60,6 +60,7 @@ function SignUpForm() {
                     <input 
                         name='name' 
                         type='text'
+                        required
                         placeholder='John Doe'/>
                 </div>
                 {/* email */}
@@ -67,7 +68,8 @@ function SignUpForm() {
                     <label>Email</label>
                     <input 
                         name='email' 
-                        type='text'
+                        type='email'
+                        required
                         placeholder='john@examole.com'/>
                 </div>
                 {/* password */}
@@ -75,7 +77,8 @@ function SignUpForm() {
                     <label>Password</label>
                     <input 
                         name='password'
-                        type='password' 
+                        type='password'
+                        required 
                         />
                 </div>
                 {/* submit button */}

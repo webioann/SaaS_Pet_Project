@@ -4,8 +4,8 @@ import { Account, User as AuthUser } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import User from '../models/UserSchema'
-import connect from "../lib/connect";
+import User from '../../../../models/UserSchema'
+import connect from "../../../../lib/connect";
 import { redirect } from "next/navigation";
 
 export const authConfig: NextAuthOptions = {
@@ -44,7 +44,7 @@ export const authConfig: NextAuthOptions = {
         strategy: "jwt",
     },
     secret: process.env.NEXTAUTH_SECRET as string,
-    pages: { 
-        signIn: '/api/auth/signup',
-    }
+    // pages: { 
+    //     signIn: '/api/auth/signin',
+    // }
 }

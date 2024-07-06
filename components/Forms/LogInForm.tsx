@@ -57,7 +57,8 @@ function LogInForm() {
                     <label>Email</label>
                     <input 
                         name='email' 
-                        type='text'
+                        type='email'
+                        required
                         placeholder='John Doe'/>
                 </div>
                 {/* password */}
@@ -65,7 +66,8 @@ function LogInForm() {
                     <label>Password</label>
                     <input 
                         name='password'
-                        type='password' 
+                        type='password'
+                        required 
                         placeholder='john@examole.com'/>
                 </div>
                 {/* submit button */}

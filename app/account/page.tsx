@@ -1,6 +1,6 @@
 'use server';
 import { getServerSession } from "next-auth";
-import { authConfig } from "../../configs/auth.config"
+import { authConfig } from "../api/auth/[...nextauth]/auth.config"
 import Container from "../../components/Container/Container";
 import Image from "next/image";
 
@@ -11,6 +11,7 @@ async function AccountPage() {
             <Container width={1200}>
                 <h1>Account page</h1>
                 <h2>USER name { session?.user?.name }</h2>
+                <h2>USER name { session?.user?.email }</h2>
                 { session?.user?.image && <Image src={session.user.image} width={100} height={100} alt="avatar"/> }
             </Container>
         </main>
