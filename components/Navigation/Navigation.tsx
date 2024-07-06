@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { IoMdHome } from "react-icons/io";
 
 import { useSession } from 'next-auth/react';
-import SignOutButton from '../AuthComponents/SignOutButton'
+import SignOutButton from '../SignOutButton/SignOutButton'
 import Container from '../Container/Container'
 import './navigation.scss'
 
