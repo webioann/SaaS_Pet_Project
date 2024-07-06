@@ -1,13 +1,13 @@
-import React from 'react'
 import Link from 'next/link'
-import RegistrationForm from '../../../components/RegisterForm/RegisterForm'
+import SignUpForm from '../../../components/Forms/SignUpForm'
 import styles from '../register_pages.module.scss'
 
-function SignupPage() {
+async function Signup() {
     return (
         <section className={styles.register_page}>
             <h1 className={styles.auth_header}>Sign up</h1>
-            <RegistrationForm type='signup'/>
+            {/* <RegistrationForm type='signup'/> */}
+            <SignUpForm/>
             <div className={styles.question}>
                 <p className={styles.question_text}>Already have an account ?</p>
                 <Link href="/login" className={`${styles.question_link} ${styles.link}`}>Login now.</Link> 
@@ -21,4 +21,4 @@ function SignupPage() {
     )
 }
 
-export default SignupPage;
+export default Signup;

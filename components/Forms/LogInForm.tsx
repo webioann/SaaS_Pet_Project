@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+import GoogleSigninButton from '../GoogleSigninButton/GoogleSigninButton';
 import { useRouter } from 'next/navigation'
 import { signIn } from "next-auth/react";
 import { HiOutlineMail } from 'react-icons/hi'
@@ -38,10 +39,7 @@ function LogInForm() {
         else return
     }
     return (
-        <form onSubmit={(event) => loginForAuthedUser(event)}
-            className='form'
-            action={() => console.log('Log in action')}
-            >
+        <form onSubmit={(event) => loginForAuthedUser(event)} className='form'>
             <div className='wrapper'>
                 <h1 className='form-title'>Login account</h1>
                 <p className='form-subtitle'>use your password and email</p>
@@ -63,6 +61,7 @@ function LogInForm() {
                 </div>
                 {/* submit button */}
                 <button type='submit' className='submit-button'>Login</button>
+                <GoogleSigninButton/>
                 {/* redirect link */}
                 <div className='redirect'>
                     <p className='question'>New in platform?</p>

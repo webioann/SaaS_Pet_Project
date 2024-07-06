@@ -1,6 +1,7 @@
-"use client"
+"use client";  
 import React from 'react'
 import { useSession, signOut } from "next-auth/react"
+import './signout.scss'
 
 function SignOutButton() {
 
@@ -10,7 +11,7 @@ function SignOutButton() {
         return (
             <div>
                 <button 
-                    style={{color: 'red'}}
+                    className='signout-button'
                     onClick={() => signOut()}>
                         Sign out
                 </button>
