@@ -19,12 +19,16 @@ function Navigation() {
                         <Link href='/'>
                             <IoMdHome color='green' size={20}/>
                         </Link>
-                        { !session.data && <Link href='/signup'>Sign up</Link>}
-                        { !session.data && <Link href='/login'>Login in</Link>}
-                        { session.data && <Link href='/account'>Account</Link>}
 
                     </div>
-                    <SignOutButton/>
+                    <div className='right-side'>
+                        {/* if the User is not authorized */}
+                        { !session.data && <Link href='/signup' className='signin-button'>Sign up</Link>}
+                        { !session.data && <Link href='/login' className='signin-button'>Login in</Link>}
+                        {/* if the User is authorized */}
+                        { session.data && <Link href='/account' className='signin-button'>Account</Link>}
+                        { session.data &&  <SignOutButton/>}
+                    </div>
 
                 </div>
             </Container>

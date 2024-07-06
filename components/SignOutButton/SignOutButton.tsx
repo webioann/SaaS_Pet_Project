@@ -1,14 +1,11 @@
 "use client";  
 import React from 'react'
-import { useSession, signOut } from "next-auth/react"
+import { signOut } from "next-auth/react"
 import './signout.scss'
 
 function SignOutButton() {
-
-    const { data: session } = useSession()
-
     
-    if (session) return (
+    return (
         <div>
             <button 
                 className='signout-button'

@@ -7,9 +7,20 @@
         justify-content: space-between;
         align-items: center;
         .left-side{
-            display: flex;
-            align-items: center;
             gap: 1rem;
+            flex: 1;
+        }
+        .right-side{
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .signin-button{
+            padding: 5px 0.5rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--shadow);
+            font-weight: 800;
+            color: var(--main-text );
         }
     }
 }
