@@ -2,6 +2,7 @@ import React from 'react'
 import { Lato } from 'next/font/google'
 import type { Metadata } from 'next'
 import AuthContextProvider from '../context/AuthContextProvider'
+import Navigation from '../components/Navigation/Navigation'
 import './global.scss'
 
 // If loading a variable font, you don't need to specify the font weight
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="en" className={lato.className}>
             <body>
                 <AuthContextProvider>
+                    <Navigation/>
                     {children}
                 </AuthContextProvider>
             </body>
