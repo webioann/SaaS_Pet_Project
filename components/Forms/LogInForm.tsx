@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, FormEventHandler } from 'react'
 import GoogleSigninButton from '../GoogleSigninButton/GoogleSigninButton';
 import { useRouter } from 'next/navigation'
 import { signIn } from "next-auth/react";
@@ -11,29 +11,33 @@ import './form.scss'
 function LogInForm() {
     const router = useRouter()
 
-    const [formData,setFormData] = useState<LoginFormDataType>({
-        email: '',
-        password: ''
-    })
+    // const [formData,setFormData] = useState<LoginFormDataType>({
+    //     email: '',
+    //     password: ''
+    // })
     const [error,setError] = useState<string | null>(null)
 
 
-    const loginForAuthedUser = async (event) => {
-        event.preventDefault();
-        if(formData.email.length > 7 && formData.password.length > 5) {
+    const loginForAuthedUser: FormEventHandler<HTMLFormElement> = async (event) => {
+        event.preventDefault()
+        const formData = new FormData(event.currentTarget)
+        const email = formData.get('email')
+        const password = formData.get('password')
+        if(email && password) {
             try {
                 const res = await signIn("credentials", {
-                    email: formData.email,
-                    password: formData.password,
+                    email,
+                    password,
                     redirect: false,
+                    callbackUrl: '/'
                 });
                 if (!res) {
                     setError("Invalid Credentials");
                     return;
                 }
-                router.push('/')
+                // router.push('/')
             } catch (error) {
-                console.log(error);
+                console.log(error); 
             }
         }
         else return

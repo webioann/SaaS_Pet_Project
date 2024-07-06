@@ -20,18 +20,20 @@ export const authConfig: NextAuthOptions = {
                 password: {label: 'password', type: 'password', required: true},
             },
             async authorize(credentials) {
-                const { name, email, password } = credentials as {
-                    name: string;
+                const { email, password } = credentials as {
                     email: string;
                     password: string;
                 }
                 try {
-                    await connect();
-                    const user = await User.findOne({ email });
-                    if (!user) { return null }
-                    const passwordsMatch = await bcrypt.compare(password, user.password);
-                    if (!passwordsMatch) { return null }
-                    return user;
+                    if(!email || !password) return null
+                    else {
+                        await connect();
+                        const user = await User.findOne({ email });
+                        if (!user) { return null }
+                        const passwordsMatch = await bcrypt.compare(password, user.password);
+                        if (!passwordsMatch) { return null }
+                        return user;
+                    }
                 } catch (error) {
                     console.log("Error: ", error);
                 }
@@ -42,5 +44,7 @@ export const authConfig: NextAuthOptions = {
         strategy: "jwt",
     },
     secret: process.env.NEXTAUTH_SECRET as string,
-    pages: {  }
+    // pages: { 
+    //     signIn: '/signup',
+    // }
 }

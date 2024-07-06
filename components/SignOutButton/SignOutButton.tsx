@@ -9,7 +9,7 @@ function SignOutButton() {
         <div>
             <button 
                 className='signout-button'
-                onClick={() => signOut()}>
+                onClick={() => signOut({callbackUrl: '/'})}>
                     Sign out
             </button>
         </div>

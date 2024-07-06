@@ -1,8 +1,20 @@
-import React from 'react'
+'use server';
+import { getServerSession } from "next-auth";
+import { authConfig } from "../../configs/auth.config"
+import Container from "../../components/Container/Container";
+import Image from "next/image";
 
-function AccountPage() {
+async function AccountPage() {
+    const session = await getServerSession(authConfig)
     return (
-        <h1>Account page</h1>
+        <main>
+            <Container width={1200}>
+                <h1>Account page</h1>
+                <h2>USER name { session?.user?.name }</h2>
+                { session?.user?.image && <Image src={session.user.image} width={100} height={100} alt="avatar"/> }
+            </Container>
+        </main>
+        
     )
 }
 
