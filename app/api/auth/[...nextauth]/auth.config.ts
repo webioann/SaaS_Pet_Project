@@ -34,7 +34,7 @@ export const authConfig: NextAuthOptions = {
                     return user
                 }
                 if(user && !passwordsMatch) {
-                    redirect('/signup')
+                    redirect('/signin')
                 }
                 if (!user) { return null }
             }       
@@ -44,7 +44,7 @@ export const authConfig: NextAuthOptions = {
         strategy: "jwt",
     },
     secret: process.env.NEXTAUTH_SECRET as string,
-    // pages: { 
-    //     signIn: '/api/auth/signin',
-    // }
+    pages: { 
+        signIn: '/signin',
+    }
 }

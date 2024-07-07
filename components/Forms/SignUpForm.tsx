@@ -21,7 +21,7 @@ function SignUpForm() {
     const createNewUserAccount = async (event) => {
         event.preventDefault();
         if(formData.email.length > 7 && formData.password.length > 5) {
-            const response = await fetch('/api/auth/signup', {
+            const response = await fetch('/api/signin', {
                 method: 'POST',
                 body: JSON.stringify({
                     name: formData.name,

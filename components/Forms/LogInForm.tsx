@@ -25,17 +25,21 @@ function LogInForm() {
         const password = formData.get('password') as string
         if(email.length > 7 && password.length > 5) {
             try {
-                const response = await fetch('/api/auth/login', {
+                const response = await fetch('/api/login', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password }),
+                    body: JSON.stringify({
+                        email,
+                        password 
+                    }),
+                    headers: { 
+                        'Content-Type': 'application/json' 
+                    },
                 })
-                // const res = await signIn("credentials", {
-                //     email,
-                //     password,
-                //     redirect: false,
-                //     callbackUrl: '/'
-                // });
+                const res = await signIn("credentials", {
+                    email,
+                    password,
+                    redirect: false
+                });
                 if (!response)  {
                     setError("Invalid Credentials")
                     return;
