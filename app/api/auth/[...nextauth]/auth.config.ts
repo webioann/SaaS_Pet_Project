@@ -17,6 +17,7 @@ export const authConfig: NextAuthOptions = {
         CredentialsProvider({
             name: 'credentials',
             credentials: {
+                name: {label: 'name', type: 'text', required: false},
                 email: {label: 'email', type: 'email', required: true},
                 password: {label: 'password', type: 'password', required: true},
             },
@@ -34,9 +35,12 @@ export const authConfig: NextAuthOptions = {
                     return user
                 }
                 if(user && !passwordsMatch) {
-                    redirect('/signin')
+                    redirect('/signup')
                 }
-                if (!user) { return null }
+                if (!user) { 
+                    const hashedPassword = await bcrypt.hash(password, 10);
+                    await User.create({ name, email, password: hashedPassword });
+                }
             }       
         })
     ],

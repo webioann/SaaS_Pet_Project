@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, FormEventHandler } from 'react'
 import { useRouter } from 'next/navigation'
 import GoogleSigninButton from '../GoogleSigninButton/GoogleSigninButton';
 import { signIn } from "next-auth/react";
@@ -18,31 +18,34 @@ function SignUpForm() {
     })
     const [error,setError] = useState<string | null>(null)
 
-    const createNewUserAccount = async (event) => {
-        event.preventDefault();
-        if(formData.email.length > 7 && formData.password.length > 5) {
-            const response = await fetch('/api/signin', {
+    const createNewUserAccount: FormEventHandler<HTMLFormElement>  = async (event) => {
+        event.preventDefault()
+        const formData = new FormData(event.currentTarget)
+        const name = formData.get('name') as string
+        const email = formData.get('email') as string
+        const password = formData.get('password') as string
+
+        if(email.length > 7 && password.length > 5) {
+            const response = await fetch('/api/signup', {
                 method: 'POST',
                 body: JSON.stringify({
-                    name: formData.name,
-                    email: formData.email,
-                    password: formData.password
+                    name,
+                    email,
+                    password
                 }),
                 headers: {
                     "Content-type": "application/json",
                 },
             })
-            if(!response.ok) { throw new Error('Failed on RegisterForm') }
-            if(response.ok) {
+            if(!response) { throw new Error('Failed on Signup Form') }
+            if(response) {
                 await signIn("credentials", {
-                    name: formData.name,
-                    email: formData.email,
-                    password: formData.password,
+                    email: email,
+                    password: password,
                     redirect: false,
                 });
             }
             router.push('/')
-            console.log(response)
         }
         else return
     }
@@ -50,7 +53,7 @@ function SignUpForm() {
 
 
     return (
-        <form onSubmit={(event) => createNewUserAccount(event)} className='form'>
+        <form onSubmit={createNewUserAccount} className='form'>
             <div className='wrapper'>
                 <h1 className='form-title'>Login account</h1>
                 <p className='form-subtitle'>use your password and email</p>

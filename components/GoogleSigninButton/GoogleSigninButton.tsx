@@ -7,7 +7,7 @@ function GoogleSigninButton() {
     return (
         <button 
             className='signin-button'
-            onClick={() => signIn('google')}>
+            onClick={() => signIn('google', {callbackUrl: '/'})}>
                 Google
         </button>
     )

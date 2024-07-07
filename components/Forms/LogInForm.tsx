@@ -23,6 +23,7 @@ function LogInForm() {
         const formData = new FormData(event.currentTarget)
         const email = formData.get('email') as string
         const password = formData.get('password') as string
+
         if(email.length > 7 && password.length > 5) {
             try {
                 const response = await fetch('/api/login', {
@@ -35,15 +36,14 @@ function LogInForm() {
                         'Content-Type': 'application/json' 
                     },
                 })
-                const res = await signIn("credentials", {
-                    email,
-                    password,
-                    redirect: false
-                });
-                if (!response)  {
-                    setError("Invalid Credentials")
-                    return;
+                if(response) {
+                    await signIn("credentials", {
+                        email,
+                        password,
+                        redirect: false
+                    })
                 }
+                if (!response) { throw new Error('Failed on Login Form') }
                 router.push('/')
             } catch (error) {
                 console.log(error); 
