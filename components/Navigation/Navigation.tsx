@@ -10,6 +10,7 @@ import './navigation.scss'
 
 function Navigation() {
     const session = useSession()
+    // console.log('SESSION -->', session)
 
     return (
         <nav className='navbar'>

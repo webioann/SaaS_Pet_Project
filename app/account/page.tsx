@@ -1,6 +1,6 @@
 'use server';
 import { getServerSession } from "next-auth";
-import { authConfig } from "../api/auth/[...nextauth]/auth.config"
+import { authConfig } from "../api/auth/[...nextauth]/options"
 import Container from "../../components/Container/Container";
 import Image from "next/image";
 

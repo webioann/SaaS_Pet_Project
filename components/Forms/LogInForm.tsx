@@ -11,48 +11,23 @@ import './form.scss'
 function LogInForm() {
     const router = useRouter()
 
-    // const [formData,setFormData] = useState<LoginFormDataType>({
-    //     email: '',
-    //     password: ''
-    // })
-    const [error,setError] = useState<string | null>(null)
-
-
-    const loginForAuthedUser: FormEventHandler<HTMLFormElement> = async (event) => {
+    const handlesubmit: FormEventHandler<HTMLFormElement> = async (event) => {
         event.preventDefault()
         const formData = new FormData(event.currentTarget)
-        const email = formData.get('email') as string
-        const password = formData.get('password') as string
-
-        if(email.length > 7 && password.length > 5) {
-            try {
-                const response = await fetch('/api/login', {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        email,
-                        password 
-                    }),
-                    headers: { 
-                        'Content-Type': 'application/json' 
-                    },
+        try {
+            const response = await signIn("credentials", {
+                    email: formData.get('email'),
+                    password: formData.get('password'),
+                    redirect: false
                 })
-                if(response) {
-                    await signIn("credentials", {
-                        email,
-                        password,
-                        redirect: false
-                    })
-                }
-                if (!response) { throw new Error('Failed on Login Form') }
-                router.push('/')
-            } catch (error) {
-                console.log(error); 
-            }
-        }
-        else return
+                console.log('RES Login---------> ', response)
+                if (response && !response.error) { router.push('/') }
+                else { throw new Error('Failed on Login Form') }
+            } catch (error) { throw new Error('ERROR in login form') }
     }
+
     return (
-        <form onSubmit={loginForAuthedUser} className='form'>
+        <form onSubmit={handlesubmit} className='form'>
             <div className='wrapper'>
                 <h1 className='form-title'>Login account</h1>
                 <p className='form-subtitle'>use your password and email</p>
@@ -90,3 +65,36 @@ function LogInForm() {
 }
 
 export default LogInForm;
+
+
+    // const loginForAuthedUser: FormEventHandler<HTMLFormElement> = async (event) => {
+    //     event.preventDefault()
+    //     const formData = new FormData(event.currentTarget)
+    //     const email = formData.get('email') as string
+    //     const password = formData.get('password') as string
+
+    //     if(email.length > 7 && password.length > 5) {
+    //         try {
+    //             const response = await fetch('/api/login', {
+    //                 method: 'POST',
+    //                 body: JSON.stringify({
+    //                     email,
+    //                     password 
+    //                 }),
+    //                 headers: { 
+    //                     'Content-Type': 'application/json' 
+    //                 },
+    //             })
+    //             if(response) {
+    //                 await signIn("credentials", {
+    //                     email,
+    //                     password,
+    //                     redirect: false
+    //                 })
+    //             }
+    //             if (!response) { throw new Error('Failed on Login Form') }
+    //             router.push('/')
+    //         } catch (error) { throw new Error('ERROR in login form') }
+    //     }
+    //     else return
+    // }

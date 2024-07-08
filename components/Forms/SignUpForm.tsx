@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, FormEventHandler } from 'react'
+import React, { FormEventHandler } from 'react'
 import { useRouter } from 'next/navigation'
 import GoogleSigninButton from '../GoogleSigninButton/GoogleSigninButton';
 import { signIn } from "next-auth/react";
@@ -11,51 +11,27 @@ import './form.scss'
 function SignUpForm() {
     const router = useRouter()
 
-    const [formData,setFormData] = useState<SignUpFormDataType>({
-        name: 'USER',
-        email: '',
-        password: ''
-    })
-    const [error,setError] = useState<string | null>(null)
-
-    const createNewUserAccount: FormEventHandler<HTMLFormElement>  = async (event) => {
+    const handlesubmit: FormEventHandler<HTMLFormElement> = async (event) => {
         event.preventDefault()
         const formData = new FormData(event.currentTarget)
-        const name = formData.get('name') as string
-        const email = formData.get('email') as string
-        const password = formData.get('password') as string
-
-        if(email.length > 7 && password.length > 5) {
-            const response = await fetch('/api/signup', {
-                method: 'POST',
-                body: JSON.stringify({
-                    name,
-                    email,
-                    password
-                }),
-                headers: {
-                    "Content-type": "application/json",
-                },
+        try {
+            const response = await signIn("credentials", {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                password: formData.get('password'),
+                redirect: false
             })
-            if(!response) { throw new Error('Failed on Signup Form') }
-            if(response) {
-                await signIn("credentials", {
-                    email: email,
-                    password: password,
-                    redirect: false,
-                });
-            }
-            router.push('/')
-        }
-        else return
+            console.log('RES Signup---------> ', response)
+            if (response && !response.error) { router.push('/') }
+            else { throw new Error('Failed on Signup form') }
+        } 
+        catch (error) { throw new Error('ERROR in Signup form') }
     }
 
-
-
     return (
-        <form onSubmit={createNewUserAccount} className='form'>
+        <form onSubmit={handlesubmit} className='form'>
             <div className='wrapper'>
-                <h1 className='form-title'>Login account</h1>
+                <h1 className='form-title'>Sign up</h1>
                 <p className='form-subtitle'>use your password and email</p>
                 {/* name */}
                 <div className='input-wrapper'>
@@ -73,14 +49,14 @@ function SignUpForm() {
                         name='email' 
                         type='email'
                         required
-                        placeholder='john@examole.com'/>
+                        placeholder='john@example.com'/>
                 </div>
                 {/* password */}
                 <div className='input-wrapper'>
                     <label>Password</label>
                     <input 
                         name='password'
-                        type='password'
+                        type='text'
                         required 
                         />
                 </div>
@@ -103,4 +79,38 @@ function SignUpForm() {
     )
 }
 
-export default SignUpForm
+export default SignUpForm;
+    // const createNewUserAccount: FormEventHandler<HTMLFormElement>  = async (event) => {
+    //     event.preventDefault()
+    //     const formData = new FormData(event.currentTarget)
+    //     const name = formData.get('name') as string
+    //     const email = formData.get('email') as string
+    //     const password = formData.get('password') as string
+
+    //     if(email.length > 7 && password.length > 5) {
+    //         try{
+    //             const response = await fetch('/api/signup', {
+    //                 method: 'POST',
+    //                 body: JSON.stringify({
+    //                     name,
+    //                     email,
+    //                     password
+    //                 }),
+    //                 headers: {
+    //                     "Content-type": "application/json",
+    //                 },
+    //             })
+    //             if(!response) { throw new Error('Failed on Signup Form') }
+    //             if(response) {
+    //                 await signIn("credentials", {
+    //                     email: email,
+    //                     password: password,
+    //                     redirect: false,
+    //                 });
+    //             }
+    //             router.push('/')
+    
+    //         }catch(error) { throw new Error('ERROR in signup form') }
+    //     }
+    //     else return
+    // }
