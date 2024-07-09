@@ -3,8 +3,6 @@ import React, { FormEventHandler } from 'react'
 import { useRouter } from 'next/navigation'
 import GoogleSigninButton from '../GoogleSigninButton/GoogleSigninButton';
 import { signIn } from "next-auth/react";
-import { HiOutlineMail } from 'react-icons/hi'
-import { SignUpFormDataType } from '../../types/auth.types';
 import Link from 'next/link'
 import './form.scss'
 
@@ -14,30 +12,15 @@ function SignUpForm() {
     const handlesubmit: FormEventHandler<HTMLFormElement> = async (event) => {
         event.preventDefault()
         const formData = new FormData(event.currentTarget)
-        const baseUrl = process.env.NEXTAUTH_URL;
         try {
-            // const response = await signIn("credentials", {
-            //     name: formData.get('name'),
-            //     email: formData.get('email'),
-            //     password: formData.get('password'),
-            //     redirect: false
-            // })
-            // console.log('RES Signup---------> ', response)
-            const response = await fetch(`${baseUrl}/api/signup`, {
-                method: "POST",
-                headers: {
-                "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    password: formData.get('password'),
-                }),
-            });
-    
-            const responseData = await response.json();
-    
-            if (response.ok) { router.push('/') }
+            const response = await signIn("credentials", {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                password: formData.get('password'),
+                redirect: false
+            })
+            console.log('RES Sign In---------> ', response)
+            if (response) { router.push('/') }
             else { throw new Error('Failed on Signup form') }
         } 
         catch (error) { throw new Error('ERROR in Signup form') }
@@ -95,37 +78,3 @@ function SignUpForm() {
 }
 
 export default SignUpForm;
-    // const createNewUserAccount: FormEventHandler<HTMLFormElement>  = async (event) => {
-    //     event.preventDefault()
-    //     const formData = new FormData(event.currentTarget)
-    //     const name = formData.get('name') as string
-    //     const email = formData.get('email') as string
-    //     const password = formData.get('password') as string
-
-    //     if(email.length > 7 && password.length > 5) {
-    //         try{
-    //             const response = await fetch('/api/signup', {
-    //                 method: 'POST',
-    //                 body: JSON.stringify({
-    //                     name,
-    //                     email,
-    //                     password
-    //                 }),
-    //                 headers: {
-    //                     "Content-type": "application/json",
-    //                 },
-    //             })
-    //             if(!response) { throw new Error('Failed on Signup Form') }
-    //             if(response) {
-    //                 await signIn("credentials", {
-    //                     email: email,
-    //                     password: password,
-    //                     redirect: false,
-    //                 });
-    //             }
-    //             router.push('/')
-    
-    //         }catch(error) { throw new Error('ERROR in signup form') }
-    //     }
-    //     else return
-    // }

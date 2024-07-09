@@ -10,7 +10,7 @@ import './navigation.scss'
 
 function Navigation() {
     const session = useSession()
-    // console.log('SESSION -->', session)
+    console.log('SESSION ---->', session)
 
     return (
         <nav className='navbar'>
@@ -24,7 +24,7 @@ function Navigation() {
                     </div>
                     <div className='right-side'>
                         {/* if the User is not authorized */}
-                        { !session.data && <Link href='/signup' className='signin-button'>Sign up</Link>}
+                        { !session.data && <Link href='/api/auth/signin' className='signin-button'>Sign up</Link>}
                         { !session.data && <Link href='/login' className='signin-button'>Login in</Link>}
                         {/* if the User is authorized */}
                         { session.data && <Link href='/account' className='signin-button'>Account</Link>}
