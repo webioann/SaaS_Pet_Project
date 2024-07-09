@@ -2,15 +2,16 @@
 import React from 'react'
 import Link from 'next/link'
 import { IoMdHome } from "react-icons/io";
-
 import { useSession } from 'next-auth/react';
 import SignOutButton from '../SignOutButton/SignOutButton'
 import Container from '../Container/Container'
+import { useSaveUserOnDB } from '../../lib/useSaveUserOnDB';
 import './navigation.scss'
 
 function Navigation() {
     const session = useSession()
     console.log('SESSION ---->', session)
+    // useSaveUserOnDB();
 
     return (
         <nav className='navbar'>
@@ -24,7 +25,7 @@ function Navigation() {
                     </div>
                     <div className='right-side'>
                         {/* if the User is not authorized */}
-                        { !session.data && <Link href='/api/auth/signin' className='signin-button'>Sign up</Link>}
+                        { !session.data && <Link href='/register' className='signin-button'>Sign up</Link>}
                         { !session.data && <Link href='/login' className='signin-button'>Login in</Link>}
                         {/* if the User is authorized */}
                         { session.data && <Link href='/account' className='signin-button'>Account</Link>}

@@ -6,7 +6,7 @@ import { signIn } from "next-auth/react";
 import Link from 'next/link'
 import './form.scss'
 
-function SignUpForm() {
+function SignInForm() {
     const router = useRouter()
 
     const handlesubmit: FormEventHandler<HTMLFormElement> = async (event) => {
@@ -23,6 +23,11 @@ function SignUpForm() {
                 })
             })
             if(response.ok) {
+                await signIn("credentials", {
+                    email: formData.get('email'),
+                    password: formData.get('password'),
+                    redirect: false
+                })
                 console.log("HELLO from Signin form =========>", response)
                 router.push('/')
             }
@@ -69,7 +74,7 @@ function SignUpForm() {
                 <button 
                     type='submit' 
                     className='submit-button'>
-                    Sign up
+                    Sign in
                 </button>
                 <GoogleSigninButton/>
                 {/* redirect link */}
@@ -84,7 +89,7 @@ function SignUpForm() {
     )
 }
 
-export default SignUpForm;
+export default SignInForm;
 // const handlesubmit: FormEventHandler<HTMLFormElement> = async (event) => {
 //     event.preventDefault()
 //     const formData = new FormData(event.currentTarget)
