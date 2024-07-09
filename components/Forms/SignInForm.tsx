@@ -13,17 +13,24 @@ function SignUpForm() {
         event.preventDefault()
         const formData = new FormData(event.currentTarget)
         try {
-            const response = await signIn("credentials", {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                password: formData.get('password'),
-                redirect: false
+            const response = await fetch('api/auth/register', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    password: formData.get('password'),
+                })
             })
-            console.log('RES Sign In---------> ', response)
-            if (response) { router.push('/') }
-            else { throw new Error('Failed on Signup form') }
+            if(response.ok) {
+                console.log("HELLO from Signin form =========>", response)
+                router.push('/')
+            }
+            if(!response.ok) {
+                console.log("ERROR in Signin form ==========>", response)
+            }
         } 
-        catch (error) { throw new Error('ERROR in Signup form') }
+        catch (error) { throw new Error('ERROR in Sign In form') }
     }
 
     return (
@@ -78,3 +85,19 @@ function SignUpForm() {
 }
 
 export default SignUpForm;
+// const handlesubmit: FormEventHandler<HTMLFormElement> = async (event) => {
+//     event.preventDefault()
+//     const formData = new FormData(event.currentTarget)
+//     try {
+//         const response = await signIn("credentials", {
+//             name: formData.get('name'),
+//             email: formData.get('email'),
+//             password: formData.get('password'),
+//             redirect: false
+//         })
+//         console.log('RES Sign In---------> ', response)
+//         if (response) { router.push('/') }
+//         else { throw new Error('Failed on Sign in form') }
+//     } 
+//     catch (error) { throw new Error('ERROR in Signup form') }
+// }

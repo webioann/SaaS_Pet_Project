@@ -10,7 +10,13 @@ export type LoginFormDataType = Omit<SignUpFormDataType, 'name'>
 
 // types for authorize credentials in options.ts
 export type CredentialsType = {
-    name: string,
+    name: string;
     email: string;
     password: string;
+}
+
+export type newUser = {
+    email: string;
+    image: string;
+    name: string;
 }
