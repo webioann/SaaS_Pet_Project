@@ -1,4 +1,4 @@
-import type{ NextAuthOptions } from "next-auth"
+import type{ NextAuthOptions, User as type, RequestInternal } from "next-auth"
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
@@ -27,7 +27,7 @@ export const authConfig: NextAuthOptions = {
                 email: {label: 'Email', type: 'email', required: true},
                 password: {label: 'Password', type: 'password', required: true},
             },
-            async authorize(credentials) {
+            async authorize(credentials, req) {
                 try{
                     if( credentials?.email && credentials.password ) {
                         // check if User exists on MongoDB

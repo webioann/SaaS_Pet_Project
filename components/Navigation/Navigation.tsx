@@ -21,7 +21,7 @@ function Navigation() {
                         <Link href='/'>
                             <IoMdHome color='green' size={20}/>
                         </Link>
-
+                        <h3 style={{color: 'blue'}}>{ session.status }</h3>
                     </div>
                     <div className='right-side'>
                         {/* if the User is not authorized */}
