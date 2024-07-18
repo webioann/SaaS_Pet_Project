@@ -1,17 +1,45 @@
 'use client';
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
 import { IoMdHome } from "react-icons/io";
 import { useSession } from 'next-auth/react';
 import SignOutButton from '../SignOutButton/SignOutButton'
+import { signOut } from "next-auth/react"
+
 import Container from '../Container/Container'
-import { useSaveUserOnDB } from '../../lib/useSaveUserOnDB';
+import { useSaveUserOnDB } from '../../lib/useSaveUserOnDB'
+// import { useWhenAppWillClosed } from '../../lib/useWhenAppWillClosed'
 import './navigation.scss'
 
 function Navigation() {
     const session = useSession()
     console.log('SESSION ---->', session)
     // useSaveUserOnDB();
+// useEffect(() => {
+//     // remove all current sessios before start app
+//     signOut();
+// }, [])
+
+    // useEffect(() => {
+    //     window.addEventListener('beforeunload', alertUser)
+    //     window.addEventListener('unload', handleTabClosing)
+    //     return () => {
+    //         window.removeEventListener('beforeunload', alertUser)
+    //         window.removeEventListener('unload', handleTabClosing)
+    //     }
+    // })
+    
+    // const handleTabClosing = () => {
+    //     signOut()
+    //     console.log('handleTabClosing function call')
+    // }
+    
+    // const alertUser = async (event: BeforeUnloadEvent) => {
+    //     event.preventDefault()
+    //     await signOut()
+    //     event.returnValue = ''
+    //     console.log('alertUser function call')
+    // }
 
     return (
         <nav className='navbar'>
