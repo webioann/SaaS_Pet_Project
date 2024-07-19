@@ -1,13 +1,10 @@
 'use server';
 import { useSession } from 'next-auth/react'
-import connect from "./connect";
+import connect from "../lib/connect";
 import User from '../models/UserSchema'
-import { authConfig } from '../app/api/auth/[...nextauth]/new_options'
-import { SessionType } from '../types/session.types';
 
 export const useSaveUserOnDB = () => {
     const { data, status } = useSession()
-
 
     const signinAndSaveUserOnMongoDB = async() => {
         if(data && status === 'authenticated') {
