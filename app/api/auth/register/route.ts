@@ -19,15 +19,15 @@ export async function POST(request) {
       }
       // creating  a new User account with another password  but an old email
       if(!passwordsMatch) {
-        const hashedPassword = await bcrypt.hash(password, 10)
-        await User.create({ name, email, password: hashedPassword });
+        // const hashedPassword = await bcrypt.hash(password, 10)
+        // await User.create({ name, email, password: hashedPassword });
         return NextResponse.json({
-          message: "User Created Successfully" },
-          { status: 201 });
+          message: "User was created earlier" },
+          { status: 401 });
       }
       return NextResponse.json({
         message: `User with this email ( ${email})  already exists in the Database` },
-        { status: 201 });
+        { status: 401 });
     }
     // create a fully new User
     if(!user) {
@@ -41,23 +41,7 @@ export async function POST(request) {
     console.log(error);
     return NextResponse.json({ 
       error, 
-      message: "Server Error: Something went wrong" },
+      message: "Server Error: Something went wrong in time Register route" },
       { status: 500 });
   }
 }
-// export async function GET(request) {
-//   try {
-//     const users = await User.find({
-//     });
-//     return NextResponse.json(users);
-//   } catch (error) {
-//     console.log(error);
-//     return NextResponse.json(
-//       {
-//         message: "Failed to Fetch Users",
-//         error,
-//       },
-//       { status: 500 }
-//     );
-//   }
-// }
