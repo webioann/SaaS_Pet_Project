@@ -27,9 +27,9 @@ export const authConfig: NextAuthOptions = {
                         if(user) {
                             const passwordsMatch = await bcrypt.compare(credentials.password, user.password)
                             if(passwordsMatch) {
-                                const { password, userWithoutPassword } = user
-                                console.log('USER_DOC --> ', user._doc)
-                                console.log('USER_ID --> ', user._doc._id)
+                                const { password, ...userWithoutPassword } = user._doc
+                                // console.log('USER_DOC --> ', user._doc)
+                                console.log('USER_WITHOUT_PASSWORD --> ', userWithoutPassword)
                                 return userWithoutPassword
                             }
                             if(!passwordsMatch) { throw new Error('Not correct password') }
