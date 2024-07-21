@@ -1,24 +1,15 @@
-import type{ NextAuthOptions, User as type, RequestInternal } from "next-auth"
+import type{ NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import User from '../../../../models/UserSchema'
 import connect from "../../../../lib/connect"
-import { signIn } from "next-auth/react";
-
 
 export const authConfig: NextAuthOptions = {
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID as string,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-            // authorization: {
-            //     params: {
-            //         prompt: "HELLO",
-            //         access_type: "offline",
-            //         response_type: "code"
-            //     }
-            // }
         }),
         CredentialsProvider({
             name: 'credentials',
@@ -33,21 +24,21 @@ export const authConfig: NextAuthOptions = {
                         // check if User exists on MongoDB
                         await connect();
                         const user = await User.findOne({ email: credentials.email })
-                        // const hashedPassword = await bcrypt.hash(credentials.password, 10)
                         if(user) {
                             const passwordsMatch = await bcrypt.compare(credentials.password, user.password)
-
-                            console.log('USER_DOC --> ', user._doc)
-                            return user._doc
+                            if(passwordsMatch) {
+                                const { password, userWithoutPassword } = user
+                                console.log('USER_DOC --> ', user._doc)
+                                console.log('USER_ID --> ', user._doc._id)
+                                return userWithoutPassword
+                            }
+                            if(!passwordsMatch) { throw new Error('Not correct password') }
                         }
-                        if ( !user ) { 
-                            throw new Error('Not found User on MongoDB')
-                        }
+                        if(!user) { throw new Error('Not found User on MongoDB') }
                     }
-                    // if some field is empty
-                    if ( !credentials?.email || !credentials.password ) return null
+                    if ( !credentials?.email || !credentials.password ) { throw new Error('Wrong email or password') }
                 }
-                catch(error) { { throw new Error('Not found User on MongoDB') }}  
+                catch(error) { throw new Error('Not found User on MongoDB') }
             }     
         })
     ],

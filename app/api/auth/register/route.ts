@@ -17,24 +17,18 @@ export async function POST(request) {
           message: `User with this email ( ${email})  already exists in the Database` },
           { status: 201 });
       }
-      // creating  a new User account with another password  but an old email
       if(!passwordsMatch) {
-        // const hashedPassword = await bcrypt.hash(password, 10)
-        // await User.create({ name, email, password: hashedPassword });
         return NextResponse.json({
-          message: "User was created earlier" },
+          message: "Not correct password" },
           { status: 401 });
       }
-      return NextResponse.json({
-        message: `User with this email ( ${email})  already exists in the Database` },
-        { status: 401 });
     }
     // create a fully new User
     if(!user) {
       const hashedPassword = await bcrypt.hash(password, 10)
       await User.create({ name, email, password: hashedPassword });
       return NextResponse.json({
-        message: "User Created Successfully" },
+        message: "New User Created Successfully" },
         { status: 201 });
     }
   } catch (error) {
