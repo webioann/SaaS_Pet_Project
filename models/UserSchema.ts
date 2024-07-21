@@ -4,9 +4,11 @@ mongoose.connect(process.env.MONGODB_URI as string);
 mongoose.Promise = global.Promise;
 
 const userSchema = new Schema({
-    name: String,
-    email: String,
-    password: String
+    name: String, 
+    email: String, 
+    password: String, 
+    image: String, 
+    provider: String
     },
     { timestamps: true }
 );

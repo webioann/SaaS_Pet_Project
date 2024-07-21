@@ -20,6 +20,8 @@ function SignInForm() {
                     name: formData.get('name'),
                     email: formData.get('email'),
                     password: formData.get('password'),
+                    image: 'https://m.media-amazon.com/images/M/MV5BMTgzNTgzODU0NV5BMl5BanBnXkFtZTcwMjEyMjMzMQ@@._V1_.jpg',
+                    provider: 'credentials'
                 })
             })
             if(response.ok) {
@@ -28,12 +30,10 @@ function SignInForm() {
                     password: formData.get('password'),
                     redirect: false
                 })
-                console.log("HELLO from Signin form =========>", response)
+                // console.log("HELLO from Signin form =========>", response)
                 router.push('/')
             }
-            if(!response.ok) {
-                console.log("ERROR in Signin form ==========>", response)
-            }
+            if(!response.ok) { throw new Error('Response not OK') }
         } 
         catch (error) { throw new Error('ERROR in Sign In form') }
     }

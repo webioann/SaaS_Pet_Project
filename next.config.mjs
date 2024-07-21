@@ -9,6 +9,13 @@ const nextConfig = {
                 port: '',
                 pathname: '/a/**',
             },
+            // default image for credentials user avatar
+            {
+                protocol: 'https',
+                hostname: 'm.media-amazon.com',
+                port: '',
+                pathname: '/images/M/**',
+            },
         ],
     },
 };

@@ -1,15 +1,51 @@
 'use client';
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
 import { IoMdHome } from "react-icons/io";
 import { useSession } from 'next-auth/react';
 import SignOutButton from '../SignOutButton/SignOutButton'
 import Container from '../Container/Container'
+import { useRouter } from 'next/navigation';
+
+
 import './navigation.scss'
 
 function Navigation() {
     const session = useSession()
-    console.log('SESSION ---->', session)
+    const { data, status } = useSession()
+    const router = useRouter()
+
+    console.log('SESSION ---->', session.data?.user)
+
+    const  signinAndSaveUserOnMongoDB = async () => {
+        try {
+            if(data && status === 'authenticated') {
+                const response = await fetch('api/auth/register', {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({
+                        name: data?.user?.name,
+                        email: data?.user?.email,
+                        password: 'password',
+                        image: data?.user?.image,
+                        provider: 'google'
+                    })
+                })
+                if(response.ok) {
+                    router.push('/')
+                }
+                if(!response.ok) { throw new Error('Response not OK') }
+    
+            }
+        } 
+        catch (error) { throw new Error('ERROR in Sign In form') }
+    }
+
+
+    useEffect(() => {
+        status === 'authenticated' && signinAndSaveUserOnMongoDB()
+    }, [status])
+
 
     return (
         <nav className='navbar'>
