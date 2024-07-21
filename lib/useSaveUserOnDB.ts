@@ -1,6 +1,6 @@
 'use server';
 import { useSession } from 'next-auth/react'
-import connect from "../lib/connect";
+import connect from "./connect";
 import User from '../models/UserSchema'
 
 export const useSaveUserOnDB = () => {

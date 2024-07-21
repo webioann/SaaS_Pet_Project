@@ -1,33 +1,15 @@
 'use client';
-import React, { useEffect } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { IoMdHome } from "react-icons/io";
 import { useSession } from 'next-auth/react';
 import SignOutButton from '../SignOutButton/SignOutButton'
-import { signOut } from "next-auth/react"
 import Container from '../Container/Container'
-import { useSaveUserOnDB } from '../../hooks/useSaveUserOnDB'
-import { useWhenAppWillClosed } from '../../hooks/useWhenAppWillClosed';
 import './navigation.scss'
 
 function Navigation() {
     const session = useSession()
     console.log('SESSION ---->', session)
-    // useSaveUserOnDB();
-    useWhenAppWillClosed();
-
-    // useEffect(() => {
-    //     const handleTabClose = (event: BeforeUnloadEvent) => {
-    //         window.open('YOUR_URL/logout')
-    //         console.log('CLOSED')
-    //     };
-    
-    //     window.addEventListener('beforeunload', handleTabClose);
-    
-    //         return () => {
-    //         window.removeEventListener('beforeunload', handleTabClose);
-    //         };
-    // }, [])
 
     return (
         <nav className='navbar'>
