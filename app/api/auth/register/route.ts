@@ -10,8 +10,10 @@ export async function POST(request) {
     //check if the user already exists in the MongoDB
       await connect();
       const user = await User.findOne({ email }) 
+      
       if (user && provider === 'credentials') {
         const passwordsMatch = await bcrypt.compare(password, user.password)
+        // console.log('USER ID---> ', user?.data._doc._id.toString())
         // if User was authenticated and stored on MongoDB earlier
         if(passwordsMatch) {
           return NextResponse.json({
