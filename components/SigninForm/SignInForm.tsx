@@ -8,7 +8,7 @@ import './form.scss'
 
 function SignInForm() {
     const router = useRouter()
-
+    let img = 'https://c.disquscdn.com/uploads/users/32761/6743/avatar92.jpg?1559734459'
     const handlesubmit: FormEventHandler<HTMLFormElement> = async (event) => {
         event.preventDefault()
         const formData = new FormData(event.currentTarget)
@@ -20,7 +20,7 @@ function SignInForm() {
                     name: formData.get('name'),
                     email: formData.get('email'),
                     password: formData.get('password'),
-                    image: 'https://m.media-amazon.com/images/M/MV5BMTgzNTgzODU0NV5BMl5BanBnXkFtZTcwMjEyMjMzMQ@@._V1_.jpg',
+                    image: img,
                     provider: 'credentials'
                 })
             })

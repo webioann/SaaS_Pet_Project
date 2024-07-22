@@ -12,9 +12,9 @@ const nextConfig = {
             // default image for credentials user avatar
             {
                 protocol: 'https',
-                hostname: 'm.media-amazon.com',
+                hostname: 'c.disquscdn.com',
                 port: '',
-                pathname: '/images/M/**',
+                pathname: '/uploads/users/32761/6743/**',
             },
         ],
     },
