@@ -10,7 +10,7 @@ export const useSaveOAuthUserOnDB = (provider: OAuthProvider) => {
     const { data, status } = useSession()
     const router = useRouter()
 
-    const  signinAndSaveUserOnMongoDB = async () => {
+    const  afterSigninSaveUserOnMongoDB = async () => {
         try {
             if(data && status === 'authenticated') {
                 const response = await fetch('api/auth/register', {
@@ -32,7 +32,7 @@ export const useSaveOAuthUserOnDB = (provider: OAuthProvider) => {
     }
     
     useEffect(() => {
-        status === 'authenticated' && signinAndSaveUserOnMongoDB()
+        status === 'authenticated' && afterSigninSaveUserOnMongoDB()
     }, [status])
 }
 
