@@ -20,10 +20,3 @@ export type newUser = {
     image: string;
     name: string;
 }
-export type PassedDataType = {
-    name: string
-    email: string
-    password: string | null
-    image: string
-    provider: 'google' | 'credentials'
-}

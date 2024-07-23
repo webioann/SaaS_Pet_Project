@@ -12,6 +12,7 @@ function Navigation() {
     const session = useSession()
     // call this hook for save Google users on MongoDB (not credentials users)
     useSaveOAuthUserOnDB('google');
+    // console.log('TIME ---> ', new Date(1721740942080).toLocaleTimeString())
 
     return (
         <nav className='navbar'>

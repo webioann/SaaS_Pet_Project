@@ -2,7 +2,7 @@ import type{ NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import User from '../../../../models/UserSchema'
+import User from '../../../../models/User_Model_Schema'
 import connect from "../../../../lib/connect"
 
 export const authConfig: NextAuthOptions = {

@@ -1,12 +1,12 @@
 import connect from "../../../../lib/connect"
-import User from '../../../../models/UserSchema'
+import User from '../../../../models/User_Model_Schema'
 import { NextResponse } from "next/server"
 import bcrypt from "bcryptjs"
-import { PassedDataType } from "../../../../types/auth.types"
+import { IUserModelSchema } from "../../../../models/User_Model_Schema"
 
 export async function POST(request) {
   try {
-    const { name, email, password, image, provider } = await request.json() as PassedDataType
+    const { name, email, password, image, provider } = await request.json() as IUserModelSchema
     //check if the user already exists in the MongoDB
       await connect();
       const user = await User.findOne({ email }) 
@@ -39,7 +39,8 @@ export async function POST(request) {
           email, 
           password: provider === 'google' ? 'password' : hashedPassword,
           image, 
-          provider 
+          provider,
+          accountCreated: Number(new Date())
         });
         return NextResponse.json({
           message: `New User ${ name ? name : email } Created Successfully` },

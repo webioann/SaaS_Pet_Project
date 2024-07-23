@@ -24,7 +24,7 @@ function SignInForm() {
                     email: formData.get('email'),
                     password: formData.get('password'),
                     image: defaultImage,
-                    provider: 'credentials'
+                    provider: 'credentials',
                 })
             })
             if(response.ok) {
