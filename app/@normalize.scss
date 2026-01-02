@@ -1,3 +1,23 @@
+// <form>
+//   <input
+//     type="email"
+//     id="email"
+//     name="email"
+//     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+//     required
+//   />
+
+//   <input
+//     type="password"
+//     id="password"
+//     name="password"
+//     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+//     title="Пароль не может быть меньше 8 символов и должен содержать одну цифру, одну прописную (заглавную) букву и одну строчкую букву"
+//     required
+//   />
+//   <input type="submit" />
+// </form>
+
 * {
     padding: 0;
     margin: 0;
